@@ -43,6 +43,7 @@ pipeline {
 
         //clean to save disk
          //clean to save disk
+         //clean to save disk
         sh "docker image rm ${DOCKER_IMAGE}:${DOCKER_TAG}"
       }
     }
