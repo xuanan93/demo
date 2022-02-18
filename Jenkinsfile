@@ -25,12 +25,12 @@ pipeline {
     stage("Test") {
       agent {
           docker {
-            image 'node:alpine3.15'
+            image 'node:12.22.10-slim'
             args '-u 0:0 -v /tmp:/root/.cache'
           }
       }
       steps {
-        sh "sh 'npm install'"
+        sh 'npm install'
        
       }
     }
