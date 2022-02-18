@@ -3,24 +3,37 @@ pipeline {
   agent none
 
   environment {
-    DOCKER_IMAGE = "xipor11/flask-docker"
+    DOCKER_IMAGE = "xipor11/node-js"
   }
 
+  // stages {
+  //   stage("Test") {
+  //     agent {
+  //         docker {
+  //           image 'python:3.8-slim-buster'
+  //           args '-u 0:0 -v /tmp:/root/.cache'
+  //         }
+  //     }
+  //     steps {
+  //       sh "pip install poetry"
+  //       sh "poetry install"
+  //       sh "poetry run pytest"
+  //     }
+  //   }
+  
   stages {
     stage("Test") {
       agent {
           docker {
-            image 'python:3.8-slim-buster'
+            image 'node:alpine3.15'
             args '-u 0:0 -v /tmp:/root/.cache'
           }
       }
       steps {
-        sh "pip install poetry"
-        sh "poetry install"
-        sh "poetry run pytest"
+        sh "sh 'npm install'"
+       
       }
     }
-  
 
     stage("build") {
       agent { node {label 'master'}}
