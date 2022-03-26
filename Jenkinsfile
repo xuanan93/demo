@@ -3,8 +3,7 @@ pipeline {
   agent none
 
   environment {
-    DOCKER_IMAGE = "xipor11/node-js"
-  }
+    DOCKER_IMAGE = "registry.anvx.local/anvx-python"
 
   // stages {
   //   stage("Test") {
@@ -41,7 +40,7 @@ pipeline {
         DOCKER_TAG="${GIT_BRANCH.tokenize('/').pop()}-${BUILD_NUMBER}-${GIT_COMMIT.substring(0,7)}"
       }
       steps {
-        withCredentials([usernamePassword(credentialsId: 'key-docker-hub', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
+        withCredentials([usernamePassword(credentialsId: 'docker-registry-local', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
             sh 'echo $DOCKER_PASSWORD | docker login --username $DOCKER_USERNAME --password-stdin'
         }
 
