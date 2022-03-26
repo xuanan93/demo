@@ -4,6 +4,7 @@ pipeline {
 
   environment {
     DOCKER_IMAGE = "registry.anvx.local/anvx-python"
+  }
 
   // stages {
   //   stage("Test") {
