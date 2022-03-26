@@ -4,6 +4,7 @@ pipeline {
 
   environment {
     DOCKER_IMAGE = "registry.anvx.local/anvx-python"
+    DOCKER_REGISTRY = "https://registry.anvx.local/v2/"
   }
 
   // stages {
@@ -42,10 +43,10 @@ pipeline {
       }
       steps {
         withCredentials([usernamePassword(credentialsId: 'docker-registry-local', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
-            sh 'echo $DOCKER_PASSWORD | docker login --username $DOCKER_USERNAME --password-stdin'
+            sh 'echo $DOCKER_PASSWORD | docker login --username $DOCKER_USERNAME --password-stdin $DOCKER_REGISTRY'
         }
 
-        sh "docker build -t ${DOCKER_IMAGE}:${DOCKER_TAG} . "
+        sh "docker build -t ${DOCKER_IMAGE}:${DOCKER_TAG} . " 
         sh "docker push ${DOCKER_IMAGE}:${DOCKER_TAG}"
         script {
           if (GIT_BRANCH ==~ /.*master.*/) {
