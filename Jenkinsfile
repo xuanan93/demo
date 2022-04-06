@@ -3,7 +3,7 @@ pipeline {
   agent none
 
   environment {
-    DOCKER_IMAGE = "registry.anvx.local/anvx-python"
+    DOCKER_IMAGE = "registry.anvx.local/anvx-node"
     DOCKER_REGISTRY = "https://registry.anvx.local/v2/"
   }
 
@@ -11,14 +11,12 @@ pipeline {
   //   stage("Test") {
   //     agent {
   //         docker {
-  //           image 'python:3.8-slim-buster'
-  //           args '-u 0:0 -v /tmp:/root/.cache'
+  //           image 'node:12.22.10-slim'
+  //          
   //         }
   //     }
   //     steps {
-  //       sh "pip install poetry"
-  //       sh "poetry install"
-  //       sh "poetry run pytest"
+  //       sh " RUN npm install"
   //     }
   //   }
   
