@@ -1,24 +1,6 @@
 steps:
-  # - name: maven:3-jdk-8
-  #   entrypoint: mvn
-  #   args: ["test"]
-- name: maven:3-jdk-8
-  entrypoint: mvn
-  args: ["package", "-Dmaven.test.skip=true"]
-- name: gcr.io/cloud-builders/docker
-  args: ["build", "-t", "asia-southeast1-docker.pkg.dev/$PROJECT_ID/my-repository/springboot-crud-k8s:$SHORT_SHA", "--build-arg=JAR_FILE=target/springboot-crud-k8s.jar", "."]
-# - name: 'gcr.io/cloud-builders/docker'
-#   id: Push
-#   args:
-#   - 'push'
-#   - 'asia-southeast1-docker.pkg.dev/lab-demo-app/my-repository/springboot-crud-k8s:$SHORT_SHA'
-- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-  entrypoint: 'bash'
-  args:
-  - '-c'
-  - > 
-    gcloud deploy releases create release-$BUILD_ID --project=lab-demo-app --region=us-central1 --delivery-pipeline=hello-world-app --source=deploy/ --images=springboot-image=asia-southeast1-docker.pkg.dev/lab-demo-app/my-repository/springboot-crud-k8s:$SHORT_SHA
-images:
-- 'asia-southeast1-docker.pkg.dev/$PROJECT_ID/my-repository/springboot-crud-k8s:$SHORT_SHA'
-
-# [END cloudbuild_maven]ádasdasdas
+- name: 'bash'
+  args: ['echo', 'I am running in a private pool!']
+options:
+  pool:
+    name: 'projects/gms-gg-demo/locations/asia-southeast1/workerPools/cloudbuild'
