@@ -20,7 +20,7 @@ steps:
     gcloud deploy releases create release-$BUILD_ID --project=lab-demo-app --region=us-central1 --delivery-pipeline=hello-world-app --source=deploy/ --images=springboot-image=asia-southeast1-docker.pkg.dev/lab-demo-app/my-repository/springboot-crud-k8s:$SHORT_SHA
 images:
 - 'asia-southeast1-docker.pkg.dev/$PROJECT_ID/my-repository/springboot-crud-k8s:$SHORT_SHA'
-# options:
-#   pool:
-#     name: 'projects/gms-gg-demo/locations/asia-southeast1/workerPools/cloudbuild'
+options:
+  pool:
+    name: 'projects/gms-gg-demo/locations/asia-southeast1/workerPools/cloudbuild'
 # [END cloudbuild_maven]ádasdasdas
